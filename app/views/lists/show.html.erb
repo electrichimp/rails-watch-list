@@ -1,0 +1,31 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/random/1920x1080/?movie,film);">
+  <div class="container">
+    <h3><%= @list.name %>!</h3>
+  </div>
+</div>
+<div class="container">
+  <div class="mt-5">
+    <div class="cards">
+    <% @list.bookmarks.each do |bookmark| %>
+    <div class="card-product">
+      <img src="<%= bookmark.movie.poster_url %>>" />
+      <h2><%= bookmark.movie.title %></h2>
+      <div class="card-product-infos">
+        <p><%= bookmark.movie.overview %></p>
+        <h6>Bookmarks:</h5>
+        <ul>
+          <li><%= bookmark.comment %> <%= link_to "borrar", bookmark_path(bookmark), method: :delete, class: "btn btn-danger" %></li>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+    </div>
+
+    <h5 class="mt-5">Escribe nuevo bookmark...</h5>
+    <%= simple_form_for([@list, @bookmark]) do |f| %>
+      <%= f.input :comment %>
+      <%= f.association :movie, as: :radio_buttons %>
+      <%= f.submit 'guardar bookmark', class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

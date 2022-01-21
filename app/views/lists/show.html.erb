@@ -6,26 +6,29 @@
 <div class="container">
   <div class="mt-5">
     <div class="cards">
-    <% @list.bookmarks.each do |bookmark| %>
-    <div class="card-product">
-      <img src="<%= bookmark.movie.poster_url %>>" />
-      <h2><%= bookmark.movie.title %></h2>
-      <div class="card-product-infos">
-        <p><%= bookmark.movie.overview %></p>
-        <h6>Bookmarks:</h5>
-        <ul>
-          <li><%= bookmark.comment %> <%= link_to "borrar", bookmark_path(bookmark), method: :delete, class: "btn btn-danger" %></li>
-        </ul>
+      <% @list.bookmarks.each do |bookmark| %>
+      <div class="card-trip">
+        <img src=<%= bookmark.movie.poster_url %>>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= bookmark.movie.title %></h2>
+            <p><%= bookmark.movie.overview %></p>
+            <h2 class="mt-2">Bookmarks:</h2>
+            <p><%= bookmark.comment %> <%= link_to "borrar", bookmark_path(bookmark), method: :delete, class: "btn btn-danger btn-sm ml-2" %></p>
+          </div>
+        </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
-    </div>
+  </div>
 
-    <h5 class="mt-5">Escribe nuevo bookmark...</h5>
-    <%= simple_form_for([@list, @bookmark]) do |f| %>
-      <%= f.input :comment %>
-      <%= f.association :movie, as: :radio_buttons %>
-      <%= f.submit 'guardar bookmark', class: "btn btn-primary" %>
-    <% end %>
+  <div class="row justify-content-start mt-5">
+    <div class="card p-3 mb-3 col-12 col-md-6 col-lg-6">
+      <h5 class="mt-5">Escribe nuevo bookmark...</h5>
+      <%= simple_form_for([@list, @bookmark]) do |f| %>
+        <%= f.input :comment %>
+        <%= f.association :movie, as: :radio_buttons %>
+        <%= f.submit 'guardar bookmark', class: "btn btn-primary" %>
+      <% end %>
   </div>
 </div>

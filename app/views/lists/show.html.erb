@@ -30,5 +30,17 @@
         <%= f.association :movie, as: :radio_buttons %>
         <%= f.submit 'guardar bookmark', class: "btn btn-primary" %>
       <% end %>
+    </div>
   </div>
+      <div class="mb-5">
+        <h5 class="mt-5">Reviews</h5>
+        <%= link_to "Escribir review", new_list_review_path(@list) %>
+        <div class="card py-3 px-2">
+          <ul>
+          <% @list.reviews.each do |review| %>
+            <li><%= review.content %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
 </div>

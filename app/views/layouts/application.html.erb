@@ -16,7 +16,9 @@
   <body>
     <div class="border-bottom bg-white">
       <div class="container d-flex align-items-center justify-content-between py-2">
-        <h1><%= link_to 'Listas', lists_path %></h1>
+        <%= link_to lists_path do %>
+        <h1><i class="fas fa-ticket-alt"></i> Movie Log</h1>
+        <% end %>
         <%= link_to 'nueva lista?', new_list_path, class: 'btn btn-primary' %>
       </div>
     </div>
